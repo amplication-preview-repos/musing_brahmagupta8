@@ -1,0 +1,29 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model KnowledgeBase {
+  createdAt   DateTime  @default(now())
+  description String?
+  file        Json?
+  fileName    String?
+  id          String    @id @default(cuid())
+  updatedAt   DateTime  @updatedAt
+  uploadedAt  DateTime?
+}
+
+model Conversation {
+  createdAt DateTime  @default(now())
+  endTime   DateTime?
+  id        String    @id @default(cuid())
+  messages  String?
+  sessionId String?
+  startTime DateTime?
+  updatedAt DateTime  @updatedAt
+  userId    String?
+}
